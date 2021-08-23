@@ -45,6 +45,11 @@ async function main()
 
     const repos = new Server(() => '/repo/.git', {  });
 
+    repos.on('info', async (info) => {
+        await update();
+        info.accept();
+    });
+
     repos.on('fetch', async (fetch) => {
         await update();
         fetch.accept();
