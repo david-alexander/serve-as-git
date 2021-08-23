@@ -43,7 +43,7 @@ async function main()
 {
     await git.init({...gitSettings});
 
-    const repos = new Server(() => '/repo/.git', {  });
+    const repos = new Server(() => gitSettings.gitdir, {  });
 
     repos.on('info', async (info) => {
         await update();
