@@ -1,0 +1,12 @@
+{
+  "name": "serve-as-git",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "dependencies": {
+    "@david-alexander/isomorphic-git": "0.0.1157230446",
+    "express": "^4.17.1",
+    "fast-glob": "^3.2.7",
+    "globby": "^12.0.1"
+  }
+}
