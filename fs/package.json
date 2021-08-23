@@ -7,6 +7,7 @@
     "@david-alexander/isomorphic-git": "0.0.1157230446",
     "express": "^4.17.1",
     "fast-glob": "^3.2.7",
-    "globby": "^12.0.1"
+    "globby": "^12.0.1",
+    "node-git-server": "^0.6.1"
   }
 }

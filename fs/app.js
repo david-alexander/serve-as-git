@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const git = require('@david-alexander/isomorphic-git');
-const express = require('express');
+// const express = require('express');
+const Server = require('node-git-server');
 
 const gitSettings = {
     fs,
@@ -34,7 +35,7 @@ async function update()
             }
         });
 
-        await git.updateServerInfo({...gitSettings});
+        // await git.updateServerInfo({...gitSettings});
     }
 }
 
@@ -42,15 +43,26 @@ async function main()
 {
     await git.init({...gitSettings});
 
-    const app = express();
-    app.use('/info/refs', async (req, res, next) => {
+    const repos = new Server(() => '/repo/.git', {  });
+
+    repos.on('fetch', async (fetch) => {
         await update();
-        next();
+        fetch.accept();
     });
-    app.use(express.static(gitSettings.gitdir));
-    app.listen(80, () => {
+
+    repos.listen(80, () => {
+
+    });
+
+    // const app = express();
+    // app.use('/info/refs', async (req, res, next) => {
+    //     await update();
+    //     next();
+    // });
+    // app.use(express.static(gitSettings.gitdir));
+    // app.listen(80, () => {
         
-    });
+    // });
 }
 
 main();
